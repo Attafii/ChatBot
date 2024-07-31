@@ -5,7 +5,7 @@ import os
 # Initialize the OpenAI client
 client = OpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key="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"
+    api_key="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"
 )
 
 app = Flask(__name__)

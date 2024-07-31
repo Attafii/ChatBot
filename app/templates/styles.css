@@ -1,0 +1,107 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2a2a72, #009ffd);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e0e0e0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.chat-container {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 30, 30, 0.75); /* Slightly reduce opacity */
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: blur(20px); /* Increase blur for more effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.chat-box {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: transparent; /* Transparent to see blur effect */
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.message {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.user {
+    text-align: right;
+}
+
+.assistant {
+    text-align: left;
+}
+
+.message p {
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 70%;
+    background-color: #6a0dad; /* Purple for messages */
+}
+
+.user p {
+    background-color: #b084d8; /* Lighter purple for user messages */
+    color: #fff;
+}
+
+.assistant p {
+    background-color: #4a4a4a; /* Dark gray for assistant messages */
+    color: #fff;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.3); /* Slight background for form */
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: sticky; /* Keep form at the bottom */
+    bottom: 0;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #2c2c2c;
+    color: #e0e0e0;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"] {
+    padding: 15px 20px;
+    background-color: #b084d8;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+input[type="submit"]:hover {
+    background-color: #8e44ad;
+}
