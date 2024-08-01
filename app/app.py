@@ -1,6 +1,5 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template
 from openai import OpenAI
-import os
 
 # Initialize the OpenAI client
 client = OpenAI(
@@ -18,24 +17,31 @@ def home():
 
 @app.route('/get_response', methods=['POST'])
 def get_response():
-    user_input = request.form['user_input']
-    chat_history.append({"role": "user", "content": user_input})
+    if 'reset_chat' in request.form:
+        # Reset the chat history
+        chat_history.clear()
+        return render_template('index.html', chat_history=chat_history)
     
-    response_text = ""
-    completion = client.chat.completions.create(
-        model="meta/llama-3.1-405b-instruct",
-        messages=[{"role": "user", "content": user_input}],
-        temperature=0.2,
-        top_p=0.7,
-        max_tokens=1024,
-        stream=True
-    )
+    # Handle user input if present
+    user_input = request.form.get('user_input')
+    if user_input:
+        chat_history.append({"role": "user", "content": user_input})
 
-    for chunk in completion:
-        if chunk.choices[0].delta.content:
-            response_text += chunk.choices[0].delta.content
-    
-    chat_history.append({"role": "assistant", "content": response_text})
+        response_text = ""
+        completion = client.chat.completions.create(
+            model="meta/llama-3.1-405b-instruct",
+            messages=[{"role": "user", "content": user_input}],
+            temperature=0.2,
+            top_p=0.7,
+            max_tokens=1024,
+            stream=True
+        )
+
+        for chunk in completion:
+            if chunk.choices[0].delta.content:
+                response_text += chunk.choices[0].delta.content
+        
+        chat_history.append({"role": "assistant", "content": response_text})
     
     return render_template('index.html', chat_history=chat_history)
 

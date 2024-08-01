@@ -4,84 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevOps Chatbot</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        .chat-container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #1e1e1e;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-        .chat-box {
-            border: 1px solid #333;
-            padding: 15px;
-            margin-bottom: 20px;
-            height: 400px;
-            overflow-y: auto;
-            background: #1e1e1e;
-            border-radius: 8px;
-        }
-        .message {
-            margin: 10px 0;
-            line-height: 1.5;
-        }
-        .user {
-            text-align: right;
-            color: #d2a8ff;
-        }
-        .assistant {
-            text-align: left;
-            color: #82e0aa;
-        }
-        form {
-            display: flex;
-            gap: 10px;
-        }
-        input[type="text"] {
-            flex: 1;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #333;
-            background: #2c2c2c;
-            color: #e0e0e0;
-        }
-        input[type="submit"] {
-            padding: 15px 20px;
-            background-color: #d2a8ff;
-            color: #121212;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        input[type="submit"]:hover {
-            background-color: #b583f2;
-        }
-        .message p {
-            margin: 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .user p {
-            background: #3a0a7b;
-            display: inline-block;
-            max-width: 80%;
-        }
-        .assistant p {
-            background: #4a4a4a;
-            display: inline-block;
-            max-width: 80%;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="chat-container">
@@ -95,6 +18,7 @@
         <form action="/get_response" method="post">
             <input type="text" name="user_input" placeholder="Type your message..." required>
             <input type="submit" value="Send">
+            <input type="submit" name="reset_chat" value="Reset Chat">
         </form>
     </div>
 </body>
