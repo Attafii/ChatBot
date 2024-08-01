@@ -3,23 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Chatbot</title>
+    <title>Gigachat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            {% for message in chat_history %}
-                <div class="message {{ message.role }}">
-                    <p>{{ message.content }}</p>
-                </div>
-            {% endfor %}
+    <div class="container">
+        <div class="sidebar">
+            <form action="/new_chat" method="post">
+                <input type="submit" value="New Chat" class="new-chat-btn">
+            </form>
+            <div class="chat-list">
+                {% for sess_id, sess in sessions.items() %}
+                    <div class="chat-list-item-container">
+                        <form action="/" method="get" style="display: inline;">
+                            <button type="submit" name="session_id" value="{{ sess_id }}" class="chat-list-item">
+                                Chat {{ loop.index }}
+                            </button>
+                        </form>
+                        <form action="{{ url_for('delete_chat', session_id=sess_id) }}" method="post" style="display: inline;">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <form action="/get_response" method="post">
-            <input type="text" name="user_input" placeholder="Type your message..." required>
-            <input type="submit" value="Send">
-            <input type="submit" name="reset_chat" value="Reset Chat">
-        </form>
+        <div class="main-content">
+            <div class="chat-header">
+                <h1>GigaChat</h1>
+            </div>
+            <div class="chat-box" id="chat-box">
+                {% for message in chat_history %}
+                    <div class="message {{ message.role }}">
+                        <p>{{ message.content }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <form action="/get_response" method="post" class="chat-form">
+                <input type="hidden" name="session_id" value="{{ session_id }}">
+                <input type="text" name="user_input" placeholder="Type your message..." required>
+                <input type="submit" value="Send">
+                <input type="submit" name="reset_chat" value="Reset Chat">
+            </form>
+        </div>
     </div>
 </body>
 </html>
