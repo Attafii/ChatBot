@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gigachat</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+        <title>Chat Verse </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='vector.png') }}" type="image/x-icon">
+    </head>
 <body>
     <div class="container">
         <div class="sidebar">
@@ -29,7 +31,8 @@
         </div>
         <div class="main-content">
             <div class="chat-header">
-                <h1>GigaChat</h1>
+                <img src="{{ url_for('static', filename='vector.png') }}" alt="ChatVerse Icon" class="header-icon">
+                <h1>ChatVerse</h1>
             </div>
             <div class="chat-box" id="chat-box">
                 {% for message in chat_history %}
